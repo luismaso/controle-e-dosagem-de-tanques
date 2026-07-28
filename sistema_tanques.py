@@ -30,11 +30,21 @@ def validar_lotes(matriz):
             print(f"Tanque {i+1}: Média = {media:.2f} - Status: Aprovado\n\n")
         else:
             status = 0 
-            print(f"Tanque{i+1}: Média = {media:.2f} - Status: Reprovado\n\n")
+            print(f"Tanque {i+1}: Média = {media:.2f} - Status: Reprovado\n\n")
         vetor_status.append(status)
 
     return vetor_status
-    
+
+def acionar_valvulas_escoamento(vetor_status):
+    print('\nACIONAMENTO DAS VÁLVULAS DE ESCOAMENTO\n')
+    for i in range (len(vetor_status)):
+        if vetor_status [i] == 1:
+            print(f'Tanque {i+1}: Abrir válvula\n')
+        else:
+            print(f'Tanque {i+1}: Disparar alarme químico\n')
+
+    return acionar_valvulas_escoamento
+
 
 opcaomenu = ""
 while opcaomenu != "4":
@@ -64,7 +74,12 @@ while opcaomenu != "4":
             vetor_status = validar_lotes(matriz_tanques)
                   
     elif opcaomenu == "3": 
-        print("teste 333333\n")
+        if 'matriz_tanques' not in locals() or len(matriz_tanques) == 0:
+            print('Não foi informado o pH dos tanques.')
+        elif 'vetor_status' not in locals() or len(vetor_status) == 0:
+            print('Os lotes não foram validos.')
+        else:
+            acionar_valvulas_escoamento(vetor_status)
     elif opcaomenu == "4":
         print("Saindo do sistema...\n")
     else: 
