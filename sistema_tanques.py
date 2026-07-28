@@ -10,8 +10,11 @@ def coletar_ph_tanques(linhas, colunas):
             while True:
                 try:
                     valor = float(input(f"  Sensor {j + 1}: "))
-                    linha.append(valor)
-                    break # Sai do while True e vai para o próximo sensor
+                    if  0 <= valor <= 14:
+                        linha.append(valor)
+                        break
+                    else:
+                        print("Valor inválido. O pH deve estar entre 0 e 14.")
                 except ValueError:
                     print("Valor inválido. Por favor, digite um número.")
         matriz.append(linha)
