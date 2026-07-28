@@ -1,5 +1,22 @@
 opcaomenu = ""
-matriz_tanques = []
+
+def coletar_ph_tanques(linhas, colunas):
+    matriz = []
+
+    for i in range(linhas):
+        linha = []
+        print(f"═══ Tanque {i + 1}: ═══")
+        for j in range(colunas):
+            while True:
+                try:
+                    valor = float(input(f"  Sensor {j + 1}: "))
+                    linha.append(valor)
+                    break # Sai do while True e vai para o próximo sensor
+                except ValueError:
+                    print("Valor inválido. Por favor, digite um número.")
+        matriz.append(linha)
+
+    return matriz
 
 while opcaomenu != "4":
     print("╔══════════════════════════════════════╗")
@@ -13,7 +30,16 @@ while opcaomenu != "4":
     opcaomenu = input("Digite a opção desejada: ")
 
     if opcaomenu == "1":
-        print("teste 111111\n")
+        print("═══ COLETA DE pH DOS TANQUES ═══\n")
+        print("Informe as leituras dos 3 sensores de pH para cada tanque\n")
+
+        matriz_tanques = coletar_ph_tanques(4, 3)
+
+        print("\nMatriz salva com sucesso!")
+        print(matriz_tanques, "\n")
+       
+
+
     elif opcaomenu == "2":
         print("teste 222222\n")
     elif opcaomenu == "3": 
